@@ -2,15 +2,18 @@
 
 <Bit/>
 
-::: tip
-All options listed on this page apply to the default theme only. If you are using a custom theme, the options may be different.
-:::
+::: tip All options listed on this page apply to the default theme only. If you
+are using a custom theme, the options may be different. :::
 
 ## Homepage
 
-The default theme provides a homepage layout (used on [the homepage of this site](../README.md)). To use it, specify `home: true` plus some other metadata in your root `README.md`'s [YAML frontmatter](../guide/markdown.md#front-matter). This is an example of how it works:
+The default theme provides a homepage layout (used on
+[the homepage of this site](../README.md)). To use it, specify `home: true` plus
+some other metadata in your root `README.md`'s
+[YAML frontmatter](../guide/markdown.md#front-matter). This is an example of how
+it works:
 
-``` yaml
+```yaml
 ---
 home: true
 heroImage: /hero.png
@@ -19,87 +22,108 @@ tagline: Hero subtitle
 actionText: Get Started →
 actionLink: /guide/
 features:
-- title: Simplicity First
-  details: Minimal setup with markdown-centered project structure helps you focus on writing.
-- title: Vue-Powered
-  details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
-- title: Performant
-  details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
+  - title: Simplicity First
+    details:
+      Minimal setup with markdown-centered project structure helps you focus on
+      writing.
+  - title: Vue-Powered
+    details:
+      Enjoy the dev experience of Vue + webpack, use Vue components in markdown,
+      and develop custom themes with Vue.
+  - title: Performant
+    details:
+      VuePress generates pre-rendered static HTML for each page, and runs as an
+      SPA once a page is loaded.
 footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
+
 ```
 
-You can disable `title` and `subtitle` by setting the corresponding field to `null`.
+You can disable `title` and `subtitle` by setting the corresponding field to
+`null`.
 
-Any extra content after the `YAML front matter` will be parsed as normal Markdown and rendered after the features section.
+Any extra content after the `YAML front matter` will be parsed as normal
+Markdown and rendered after the features section.
 
-To use a fully custom homepage layout, you can also use a [Custom Layout](#custom-layout-for-specific-pages).
+To use a fully custom homepage layout, you can also use a
+[Custom Layout](#custom-layout-for-specific-pages).
 
 ## Navbar
 
-The Navbar may contain your page title, [Search Box](#search-box), [Navbar Links](#navbar-links), [Languages](../guide/i18n.md) and [Repository Link](#git-repo-and-edit-links), they all depend on your configuration.
+The Navbar may contain your page title, [Search Box](#search-box),
+[Navbar Links](#navbar-links), [Languages](../guide/i18n.md) and
+[Repository Link](#git-repo-and-edit-links), they all depend on your
+configuration.
 
 ### Navbar Logo
 
-You can add a logo to the navbar via `themeConfig.logo`. Logo can be placed in [public folder](../guide/assets.md#public-files).
+You can add a logo to the navbar via `themeConfig.logo`. Logo can be placed in
+[public folder](../guide/assets.md#public-files).
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
-    logo: '/assets/img/logo.png',
+    logo: "/assets/img/logo.png"
   }
-}
+};
 ```
 
 ### Navbar Links
 
 You can add links to the navbar via `themeConfig.nav`:
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/' },
-      { text: 'External', link: 'https://google.com' }
+      { text: "Home", link: "/" },
+      { text: "Guide", link: "/guide/" },
+      { text: "External", link: "https://google.com" }
     ]
   }
-}
+};
 ```
 
-Outbound links automatically get `target="_blank" rel="noopener noreferrer"`. You can offer `target` and `rel` to customize the attributes:
+Outbound links automatically get `target="_blank" rel="noopener noreferrer"`.
+You can offer `target` and `rel` to customize the attributes:
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
     nav: [
-      { text: 'External', link: 'https://google.com', target:'_self', rel:'' },
-      { text: 'Guide', link: '/guide/', target:'_blank' }
+      {
+        text: "External",
+        link: "https://google.com",
+        target: "_self",
+        rel: ""
+      },
+      { text: "Guide", link: "/guide/", target: "_blank" }
     ]
   }
-}
+};
 ```
 
-These links can also be dropdown menus if you provide an array of `items` instead of a `link`:
+These links can also be dropdown menus if you provide an array of `items`
+instead of a `link`:
 
 ```js
 module.exports = {
   themeConfig: {
     nav: [
       {
-        text: 'Languages',
-        ariaLabel: 'Language Menu',
+        text: "Languages",
+        ariaLabel: "Language Menu",
         items: [
-          { text: 'Chinese', link: '/language/chinese/' },
-          { text: 'Japanese', link: '/language/japanese/' }
+          { text: "Chinese", link: "/language/chinese/" },
+          { text: "Japanese", link: "/language/japanese/" }
         ]
       }
     ]
   }
-}
+};
 ```
 
 You can also have sub groups inside a dropdown by having nested items:
@@ -109,64 +133,79 @@ module.exports = {
   themeConfig: {
     nav: [
       {
-        text: 'Languages',
+        text: "Languages",
         items: [
-          { text: 'Group1', items: [/*  */] },
-          { text: 'Group2', items: [/*  */] }
+          {
+            text: "Group1",
+            items: [
+              /*  */
+            ]
+          },
+          {
+            text: "Group2",
+            items: [
+              /*  */
+            ]
+          }
         ]
       }
     ]
   }
-}
+};
 ```
 
 ### Disable the Navbar
 
 To disable the navbar globally, use `themeConfig.navbar`:
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
     navbar: false
   }
-}
+};
 ```
 
 You can disable the navbar for a specific page via `YAML front matter`:
 
-``` yaml
+```yaml
 ---
 navbar: false
 ---
+
 ```
 
 ## Sidebar
 
-To enable the sidebar, use `themeConfig.sidebar`. The basic configuration expects an Array of links:
+To enable the sidebar, use `themeConfig.sidebar`. The basic configuration
+expects an Array of links:
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
-    sidebar: [
-      '/',
-      '/page-a',
-      ['/page-b', 'Explicit link text']
-    ]
+    sidebar: ["/", "/page-a", ["/page-b", "Explicit link text"]]
   }
-}
+};
 ```
 
-You can omit the `.md` extension, and paths ending with `/` are inferred as `*/README.md`. The text for the link is automatically inferred (either from the first header in the page or explicit title in `YAML front matter`). To explicitly specify the link text, use an array in form of `[link, text]`.
+You can omit the `.md` extension, and paths ending with `/` are inferred as
+`*/README.md`. The text for the link is automatically inferred (either from the
+first header in the page or explicit title in `YAML front matter`). To
+explicitly specify the link text, use an array in form of `[link, text]`.
 
 ### Nested Header Links
 
-The sidebar automatically displays links for headers in the current active page, nested under the link for the page itself. You can customize this behavior using `themeConfig.sidebarDepth`. The default depth is `1`, which extracts the `h2` headers. Setting it to `0` disables the header links, and the max value is `2` which extracts both `h2` and `h3` headers.
+The sidebar automatically displays links for headers in the current active page,
+nested under the link for the page itself. You can customize this behavior using
+`themeConfig.sidebarDepth`. The default depth is `1`, which extracts the `h2`
+headers. Setting it to `0` disables the header links, and the max value is `2`
+which extracts both `h2` and `h3` headers.
 
 A page can also override this value via `YAML front matter`:
 
-``` md
+```md
 ---
 sidebarDepth: 2
 ---
@@ -174,70 +213,75 @@ sidebarDepth: 2
 
 ### Displaying Header Links of All Pages
 
-The sidebar only displays links for headers in the current active page. You can display all header links for every page with `themeConfig.displayAllHeaders: true`:
+The sidebar only displays links for headers in the current active page. You can
+display all header links for every page with
+`themeConfig.displayAllHeaders: true`:
 
-``` js
+```js
 module.exports = {
   themeConfig: {
     displayAllHeaders: true // Default: false
   }
-}
+};
 ```
 
 ### Active Header Links
 
-By default, the nested header links and the hash in the URL are updated as the user scrolls to view the different sections of the page. This behavior can be disabled with the following theme config:
+By default, the nested header links and the hash in the URL are updated as the
+user scrolls to view the different sections of the page. This behavior can be
+disabled with the following theme config:
 
-``` js
+```js
 module.exports = {
   themeConfig: {
-    activeHeaderLinks: false, // Default: true
+    activeHeaderLinks: false // Default: true
   }
-}
+};
 ```
 
-::: tip
-  It’s worth mentioning that when you disable this option, the corresponding script of this functionality will not be loaded. This is a small point in our performance optimization.
-:::
+::: tip It’s worth mentioning that when you disable this option, the
+corresponding script of this functionality will not be loaded. This is a small
+point in our performance optimization. :::
 
 ### Sidebar Groups
 
 You can divide sidebar links into several groups by using objects:
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
     sidebar: [
       {
-        title: 'Group 1',   // required
-        path: '/foo/',      // optional, link of the title, which should be an absolute path and must exist
+        title: "Group 1", // required
+        path: "/foo/", // optional, link of the title, which should be an absolute path and must exist
         collapsable: false, // optional, defaults to true
-        sidebarDepth: 1,    // optional, defaults to 1
-        children: [
-          '/'
-        ]
+        sidebarDepth: 1, // optional, defaults to 1
+        children: ["/"]
       },
       {
-        title: 'Group 2',
-        children: [ /* ... */ ]
+        title: "Group 2",
+        children: [
+          /* ... */
+        ]
       }
     ]
   }
-}
+};
 ```
 
-Sidebar groups are collapsable by default. You can force a group to be always open with `collapsable: false`.
+Sidebar groups are collapsable by default. You can force a group to be always
+open with `collapsable: false`.
 
-A sidebar group config also supports [sidebarDepth](#nested-header-links) field to override the default sidebar depth (`1`).
+A sidebar group config also supports [sidebarDepth](#nested-header-links) field
+to override the default sidebar depth (`1`).
 
-::: tip
-   Nested sidebar group is also supported.
-:::
+::: tip    Nested sidebar group is also supported. :::
 
 ### Multiple Sidebars
 
-To display different sidebars for different sections of content, first organize your pages into directories for each desired section:
+To display different sidebars for different sections of content, first organize
+your pages into directories for each desired section:
 
 ```
 .
@@ -256,174 +300,192 @@ To display different sidebars for different sections of content, first organize 
 
 Then, update your configuration to define your sidebar for each section.
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
     sidebar: {
-      '/foo/': [
-        '',     /* /foo/ */
-        'one',  /* /foo/one.html */
-        'two'   /* /foo/two.html */
+      "/foo/": [
+        "" /* /foo/ */,
+        "one" /* /foo/one.html */,
+        "two" /* /foo/two.html */
       ],
 
-      '/bar/': [
-        '',      /* /bar/ */
-        'three', /* /bar/three.html */
-        'four'   /* /bar/four.html */
+      "/bar/": [
+        "" /* /bar/ */,
+        "three" /* /bar/three.html */,
+        "four" /* /bar/four.html */
       ],
 
       // fallback
-      '/': [
-        '',        /* / */
-        'contact', /* /contact.html */
-        'about'    /* /about.html */
+      "/": [
+        "" /* / */,
+        "contact" /* /contact.html */,
+        "about" /* /about.html */
       ]
     }
   }
-}
+};
 ```
 
-::: warning
-Make sure to define the fallback configuration last.
+::: warning Make sure to define the fallback configuration last.
 
-VuePress checks each sidebar config from top to bottom. If the fallback configuration was first, VuePress would incorrectly match `/foo/` or `/bar/four.html` because they both start with `/`.
-:::
+VuePress checks each sidebar config from top to bottom. If the fallback
+configuration was first, VuePress would incorrectly match `/foo/` or
+`/bar/four.html` because they both start with `/`. :::
 
 ### Auto Sidebar for Single Pages
 
-To automatically generate a sidebar that contains only the header links for the current page, you can use `YAML front matter` on that page:
+To automatically generate a sidebar that contains only the header links for the
+current page, you can use `YAML front matter` on that page:
 
-``` yaml
+```yaml
 ---
 sidebar: auto
 ---
+
 ```
 
 You can also enable it in all pages by using config:
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
-    sidebar: 'auto'
+    sidebar: "auto"
   }
-}
+};
 ```
 
-In [multi-language](../guide/i18n.md) mode, you can also apply it to a specific locale:
+In [multi-language](../guide/i18n.md) mode, you can also apply it to a specific
+locale:
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
-     '/': {
-       sidebar: 'auto'
-     }
+    "/": {
+      sidebar: "auto"
+    }
   }
-}
+};
 ```
 
 ### Disabling the Sidebar
 
 You can disable the sidebar on a specific page with `YAML front matter`:
 
-``` yaml
+```yaml
 ---
 sidebar: false
 ---
+
 ```
 
 ## Search Box
 
 ### Built-in Search
 
-You can disable the built-in search box with `themeConfig.search: false`, and customize how many suggestions will be shown with `themeConfig.searchMaxSuggestions`:
+You can disable the built-in search box with `themeConfig.search: false`, and
+customize how many suggestions will be shown with
+`themeConfig.searchMaxSuggestions`:
 
-``` js
+```js
 module.exports = {
   themeConfig: {
     search: false,
     searchMaxSuggestions: 10
   }
-}
+};
 ```
 
-You can improve the search result by [setting `tags` in frontmatter](../guide/frontmatter.md#tags):
+You can improve the search result by
+[setting `tags` in frontmatter](../guide/frontmatter.md#tags):
 
 ```yaml
 ---
-tags: 
+tags:
   - configuration
   - theme
   - indexing
 ---
+
 ```
 
-You can also disable the built-in search box for individual pages by [setting `search` in frontmatter](../guide/frontmatter.md#search):
+You can also disable the built-in search box for individual pages by
+[setting `search` in frontmatter](../guide/frontmatter.md#search):
 
 ```yaml
 ---
 search: false
 ---
+
 ```
 
-::: tip
-Built-in Search only builds index from the title, `h2` and `h3` headers and `tags`.
-If you need full text search, you can use [Algolia Search](#algolia-search).
-:::
+::: tip Built-in Search only builds index from the title, `h2` and `h3` headers
+and `tags`. If you need full text search, you can use
+[Algolia Search](#algolia-search). :::
 
 ### Algolia Search
 
-The `themeConfig.algolia` option allows you to use [Algolia DocSearch](https://community.algolia.com/docsearch/) to replace the simple built-in search. To enable it, you need to provide at least `apiKey` and `indexName`:
+The `themeConfig.algolia` option allows you to use
+[Algolia DocSearch](https://community.algolia.com/docsearch/) to replace the
+simple built-in search. To enable it, you need to provide at least `apiKey` and
+`indexName`:
 
-``` js
+```js
 module.exports = {
   themeConfig: {
     algolia: {
-      apiKey: '<API_KEY>',
-      indexName: '<INDEX_NAME>'
+      apiKey: "<API_KEY>",
+      indexName: "<INDEX_NAME>"
     }
   }
-}
+};
 ```
 
-::: warning Note
-Unlike the [built-in search](#built-in-search) engine which works out of the box, [Algolia DocSearch](https://community.algolia.com/docsearch/) requires you to submit your site to them for indexing before it starts working.
-:::
+::: warning Note Unlike the [built-in search](#built-in-search) engine which
+works out of the box,
+[Algolia DocSearch](https://community.algolia.com/docsearch/) requires you to
+submit your site to them for indexing before it starts working. :::
 
-For more options, check out [Algolia DocSearch’s documentation](https://github.com/algolia/docsearch#docsearch-options).
+For more options, check out
+[Algolia DocSearch’s documentation](https://github.com/algolia/docsearch#docsearch-options).
 
 ### Search Placeholder
 
-You can define a placeholder for the search box by adding the `searchPlaceholder` attribute:
+You can define a placeholder for the search box by adding the
+`searchPlaceholder` attribute:
 
-``` js
+```js
 module.exports = {
   themeConfig: {
-    searchPlaceholder: 'Search...'
+    searchPlaceholder: "Search..."
   }
-}
+};
 ```
 
 ## Last Updated
 
-The `themeConfig.lastUpdated` option allows you to get the UNIX timestamp(ms) of each file’s last `git` commit, and it will also display at the bottom of each page in an appropriate format:
+The `themeConfig.lastUpdated` option allows you to get the UNIX timestamp(ms) of
+each file’s last `git` commit, and it will also display at the bottom of each
+page in an appropriate format:
 
-``` js
+```js
 module.exports = {
   themeConfig: {
-    lastUpdated: 'Last Updated', // string | boolean
+    lastUpdated: "Last Updated" // string | boolean
   }
-}
+};
 ```
 
-Note that it’s `off` by default. If given a `string`, it will be displayed as a prefix (default value: `Last Updated`).
+Note that it’s `off` by default. If given a `string`, it will be displayed as a
+prefix (default value: `Last Updated`).
 
-::: warning
-  Since `lastUpdated` is based on `git`, you can only use it in a `git` repository. Also, since the timestamp used comes from the git commit, it will display only after a first commit for a given page, and update only on ensuing commits of that page.
-:::
-
+::: warning Since `lastUpdated` is based on `git`, you can only use it in a
+`git` repository. Also, since the timestamp used comes from the git commit, it
+will display only after a first commit for a given page, and update only on
+ensuing commits of that page. :::
 
 **Also see:**
 
@@ -431,11 +493,13 @@ Note that it’s `off` by default. If given a `string`, it will be displayed as 
 
 ## Prev / Next Links
 
-Prev and next links are automatically inferred based on the sidebar order of the active page.
+Prev and next links are automatically inferred based on the sidebar order of the
+active page.
 
-You can disable them globally with `themeConfig.nextLinks` and `themeConfig.prevLinks`:
+You can disable them globally with `themeConfig.nextLinks` and
+`themeConfig.prevLinks`:
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
@@ -444,110 +508,123 @@ module.exports = {
     // default value is true. Set it to false to hide prev page links on all pages
     prevLinks: false
   }
-}
+};
 ```
 
-You can also explicitly overwrite or disable them for individual pages with `YAML front matter`:
+You can also explicitly overwrite or disable them for individual pages with
+`YAML front matter`:
 
-``` yaml
+```yaml
 ---
 prev: ./some-other-page
 next: false
 ---
+
 ```
 
 ## Git repository and Edit Links
 
-Providing `themeConfig.repo` auto generates a GitHub link in the navbar and "Edit this page" links at the bottom of each page.
+Providing `themeConfig.repo` auto generates a GitHub link in the navbar and
+"Edit this page" links at the bottom of each page.
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
     // Assumes GitHub. Can also be a full GitLab url.
-    repo: 'vuejs/vuepress',
+    repo: "vuejs/vuepress",
     // Customising the header label
     // Defaults to "GitHub"/"GitLab"/"Bitbucket" depending on `themeConfig.repo`
-    repoLabel: 'Contribute!',
+    repoLabel: "Contribute!",
 
     // Optional options for generating "Edit this page" link
 
     // if your docs are in a different repo from your main project:
-    docsRepo: 'vuejs/vuepress',
+    docsRepo: "vuejs/vuepress",
     // if your docs are not at the root of the repo:
-    docsDir: 'docs',
+    docsDir: "docs",
     // if your docs are in a specific branch (defaults to 'master'):
-    docsBranch: 'master',
+    docsBranch: "master",
     // defaults to false, set to true to enable
     editLinks: true,
     // custom text for edit link. Defaults to "Edit this page"
-    editLinkText: 'Help us improve this page!'
+    editLinkText: "Help us improve this page!"
   }
-}
+};
 ```
 
-You can overwrite the following properties on specific pages via `YAML front matter`:
+You can overwrite the following properties on specific pages via
+`YAML front matter`:
 
-``` yaml
+```yaml
 ---
 editLink: false # Will overwrite 'editLinks' from themeConfig
 prev: true # Will overwrite 'prevLinks' property from themeConfig
 next: ./my-next-page # Will overwrite 'nextLinks' property from themeConfig
 ---
+
 ```
 
 ## Smooth Scrolling <Badge text="1.2.0+" />
 
 The `themeConfig.smoothScroll` option allows you to enable smooth scrolling.
 
-``` js
+```js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
     smoothScroll: true
   }
-}
+};
 ```
 
 ## Custom Page Class
 
-Sometimes, you may need to add a unique class for a specific page so that you can target content on that page only in custom CSS. You can add a class to the theme container div with `pageClass` in `YAML front matter`:
+Sometimes, you may need to add a unique class for a specific page so that you
+can target content on that page only in custom CSS. You can add a class to the
+theme container div with `pageClass` in `YAML front matter`:
 
-``` yaml
+```yaml
 ---
 pageClass: custom-page-class
 ---
+
 ```
 
-Then you can write CSS targeting that page only in `./vuepress/styles/index.styl`.
+Then you can write CSS targeting that page only in
+`./vuepress/styles/index.styl`.
 
-``` css
-
+```css
 .theme-container.custom-page-class {
   /* page-specific rules */
 }
 ```
 
-::: tip Note
-These styles are written in [index.styl](/config/#index-styl), a file that allows you to conveniently add extra styles or override existing ones for the default theme.
-:::
+::: tip Note These styles are written in [index.styl](/config/#index-styl), a
+file that allows you to conveniently add extra styles or override existing ones
+for the default theme. :::
 
 ## Custom Layout for Specific Pages
 
-By default the content of each `*.md` file is rendered in a `<div class="page">` container, along with the sidebar, auto-generated edit links and prev/next links. To use a fully custom component in place of the page, you can again specify the component to use using `YAML front matter`:
+By default the content of each `*.md` file is rendered in a `<div class="page">`
+container, along with the sidebar, auto-generated edit links and prev/next
+links. To use a fully custom component in place of the page, you can again
+specify the component to use using `YAML front matter`:
 
-``` yaml
+```yaml
 ---
 layout: SpecialLayout
 ---
+
 ```
 
 This will render `.vuepress/components/SpecialLayout.vue` for the given page.
 
 ## Ejecting
 
-You can copy the default theme source code into `.vuepress/theme` to fully customize the theme using the `vuepress eject [targetDir]` command.
+You can copy the default theme source code into `.vuepress/theme` to fully
+customize the theme using the `vuepress eject [targetDir]` command.
 
-::: warning
-Once you eject, you are on your own and **won’t** be receiving future updates or bugfixes to the default theme even if you upgrade VuePress.
+::: warning Once you eject, you are on your own and **won’t** be receiving
+future updates or bugfixes to the default theme even if you upgrade VuePress.
 :::

@@ -6,7 +6,7 @@
 - 使用的是默认的构建输出位置；
 - VuePress 以本地依赖的形式被安装到你的项目中，并且配置了如下的 npm scripts:
 
-``` json
+```json
 {
   "scripts": {
     "docs:build": "vuepress build docs"
@@ -18,13 +18,15 @@
 
 1. 在 `docs/.vuepress/config.js` 中设置正确的 `base`。
 
-   如果你打算发布到 `https://<USERNAME>.github.io/`，则可以省略这一步，因为 `base` 默认即是 `"/"`。
+   如果你打算发布到 `https://<USERNAME>.github.io/`，则可以省略这一步，因为
+   `base` 默认即是 `"/"`。
 
-   如果你打算发布到 `https://<USERNAME>.github.io/<REPO>/`（也就是说你的仓库在 `https://github.com/<USERNAME>/<REPO>`），则将 `base` 设置为 `"/<REPO>/"`。
+   如果你打算发布到 `https://<USERNAME>.github.io/<REPO>/`（也就是说你的仓库在
+   `https://github.com/<USERNAME>/<REPO>`），则将 `base` 设置为 `"/<REPO>/"`。
 
 2. 在你的项目中，创建一个如下的 `deploy.sh` 文件（请自行判断去掉高亮行的注释）:
 
-``` bash{13,20,23}
+```bash{13,20,23}
 #!/usr/bin/env sh
 
 # 确保脚本抛出遇到的错误
@@ -52,23 +54,27 @@ git commit -m 'deploy'
 cd -
 ```
 
-::: tip
-你可以在你的持续集成的设置中，设置在每次 push 代码时自动运行上述脚本。
+::: tip 你可以在你的持续集成的设置中，设置在每次 push 代码时自动运行上述脚本。
 :::
 
 ### GitHub Pages and Travis CI
 
 1. 在 `docs/.vuepress/config.js` 中设置正确的 `base`。
 
-   如果你打算发布到 `https://<USERNAME or GROUP>.github.io/`，则可以省略这一步，因为 `base` 默认即是 `"/"`。
+   如果你打算发布到 `https://<USERNAME or GROUP>.github.io/`，则可以省略这一步，
+   因为 `base` 默认即是 `"/"`。
 
-   如果你打算发布到 `https://<USERNAME or GROUP>.github.io/<REPO>/`（也就是说你的仓库在 `https://github.com/<USERNAME>/<REPO>`），则将 `base` 设置为 `"/<REPO>/"`。
+   如果你打算发布到 `https://<USERNAME or GROUP>.github.io/<REPO>/`（也就是说你
+   的仓库在 `https://github.com/<USERNAME>/<REPO>`），则将 `base` 设置为
+   `"/<REPO>/"`。
 
 2. 在项目的根目录创建一个名为 `.travis.yml` 的文件；
-3. 在本地执行 `yarn` 或 `npm install` 并且提交生成的 lock 文件（即 `yarn.lock` 或 `package-lock.json`）；
-4. 使用 GitHub Pages 部署提供程序模板并遵循 [Travis 文档](https://docs.travis-ci.com/user/deployment/pages/)。
+3. 在本地执行 `yarn` 或 `npm install` 并且提交生成的 lock 文件（即 `yarn.lock`
+   或 `package-lock.json`）；
+4. 使用 GitHub Pages 部署提供程序模板并遵循
+   [Travis 文档](https://docs.travis-ci.com/user/deployment/pages/)。
 
-``` yaml
+```yaml
 language: node_js
 node_js:
   - lts/*
@@ -90,29 +96,33 @@ deploy:
 
 1. 在 `docs/.vuepress/config.js` 中设置正确的 `base`。
 
-   如果你打算发布到 `https://<USERNAME or GROUP>.gitlab.io/`，则可以省略这一步，因为 `base` 默认即是 `"/"`。
+   如果你打算发布到 `https://<USERNAME or GROUP>.gitlab.io/`，则可以省略这一步，
+   因为 `base` 默认即是 `"/"`。
 
-   如果你打算发布到 `https://<USERNAME or GROUP>.gitlab.io/<REPO>/`（也就是说你的仓库在 `https://gitlab.com/<USERNAME>/<REPO>`），则将 `base` 设置为 `"/<REPO>/"`。
+   如果你打算发布到 `https://<USERNAME or GROUP>.gitlab.io/<REPO>/`（也就是说你
+   的仓库在 `https://gitlab.com/<USERNAME>/<REPO>`），则将 `base` 设置为
+   `"/<REPO>/"`。
 
 2. 在 `.vuepress/config.js` 中将 `dest` 设置为 `public`。
-3. 在你项目的根目录下创建一个名为 `.gitlab-ci.yml` 的文件，无论何时你提交了更改，它都会帮助你自动构建和部署：
+3. 在你项目的根目录下创建一个名为 `.gitlab-ci.yml` 的文件，无论何时你提交了更改
+   ，它都会帮助你自动构建和部署：
 
-``` yaml
+```yaml
 image: node:9.11.1
 
 pages:
- cache:
-   paths:
-   - node_modules/
+  cache:
+    paths:
+      - node_modules/
 
- script:
- - yarn install # npm install
- - yarn docs:build # npm run docs:build
- artifacts:
-   paths:
-   - public
- only:
- - master
+  script:
+    - yarn install # npm install
+    - yarn docs:build # npm run docs:build
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
 ```
 
 ## Netlify
@@ -126,22 +136,25 @@ pages:
 
 ## Google Firebase
 
-1. 请确保你已经安装了 [firebase-tools](https://www.npmjs.com/package/firebase-tools)。
+1. 请确保你已经安装了
+   [firebase-tools](https://www.npmjs.com/package/firebase-tools)。
 
 2. 在你项目的根目录下创建 `firebase.json` 和 `.firebaserc`，并包含以下内容：
 
 `firebase.json`:
+
 ```json
 {
- "hosting": {
-   "public": "./docs/.vuepress/dist",
-   "ignore": []
- }
+  "hosting": {
+    "public": "./docs/.vuepress/dist",
+    "ignore": []
+  }
 }
 ```
 
 `.firebaserc`:
-``` js
+
+```js
 {
  "projects": {
    "default": "<YOUR_FIREBASE_ID>"
@@ -149,7 +162,8 @@ pages:
 }
 ```
 
-3. 在执行了 `yarn docs:build` 或 `npm run docs:build` 后, 使用 `firebase deploy` 指令来部署。
+3. 在执行了 `yarn docs:build` 或 `npm run docs:build` 后, 使用 `firebase deploy`
+   指令来部署。
 
 ## Surge
 
@@ -159,8 +173,8 @@ pages:
 
 3. 想要使用 surge 来部署，你可以运行： `surge docs/.vuepress/dist`；
 
-你也可以通过 `surge docs/.vuepress/dist yourdomain.com` 来部署到 [自定义域名](http://surge.sh/help/adding-a-custom-domain)。
-
+你也可以通过 `surge docs/.vuepress/dist yourdomain.com` 来部署到
+[自定义域名](http://surge.sh/help/adding-a-custom-domain)。
 
 ## Heroku
 
@@ -170,24 +184,27 @@ pages:
 
 3. 运行 `heroku login` 并填写你的 Heroku 证书：
 
-   ``` bash
+   ```bash
    heroku login
    ```
 
 4. 在你的项目根目录中，创建一个名为 `static.json` 的文件，并包含下述内容：
 
 `static.json`:
+
 ```json
 {
-"root": "./docs/.vuepress/dist"
+  "root": "./docs/.vuepress/dist"
 }
 ```
 
-这里是你项目的配置，请参考 [heroku-buildpack-static](https://github.com/heroku/heroku-buildpack-static) 了解更多。
+这里是你项目的配置，请参考
+[heroku-buildpack-static](https://github.com/heroku/heroku-buildpack-static) 了
+解更多。
 
 5. 配置 Heroku 的 git 远程仓库：
 
-``` bash
+```bash
 # 版本变化
 git init
 git add .
@@ -202,7 +219,7 @@ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static.git
 
 6. 部署你的网站：
 
-``` bash
+```bash
 # 发布网站
 git push heroku master
 
@@ -212,9 +229,10 @@ heroku open
 
 ## ZEIT Now
 
-请查看 [用 ZEIT Now 部署一个 VuePress 的示例站点](https://zeit.co/guides/deploying-vuepress-to-now)。
+请查看
+[用 ZEIT Now 部署一个 VuePress 的示例站点](https://zeit.co/guides/deploying-vuepress-to-now)。
 
 ## 21 云盒子
 
-请查看 [21 云盒子 - 部署一个 VuePress 静态网页](https://www.21yunbox.com/docs/#/deploy-vuepress)。
-
+请查看
+[21 云盒子 - 部署一个 VuePress 静态网页](https://www.21yunbox.com/docs/#/deploy-vuepress)。
