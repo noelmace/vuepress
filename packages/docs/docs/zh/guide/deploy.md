@@ -64,7 +64,7 @@ cd -
    如果你打算发布到 `https://<USERNAME or GROUP>.github.io/`，则可以省略这一步，
    因为 `base` 默认即是 `"/"`。
 
-   如果你打算发布到 `https://<USERNAME or GROUP>.github.io/<REPO>/`（也就是说你
+   如果你打算发布到 `https://<USERNAME or GROUP>.github.io/<REPO>/`（也就是说�
    的仓库在 `https://github.com/<USERNAME>/<REPO>`），则将 `base` 设置为
    `"/<REPO>/"`。
 
@@ -99,7 +99,7 @@ deploy:
    如果你打算发布到 `https://<USERNAME or GROUP>.gitlab.io/`，则可以省略这一步，
    因为 `base` 默认即是 `"/"`。
 
-   如果你打算发布到 `https://<USERNAME or GROUP>.gitlab.io/<REPO>/`（也就是说你
+   如果你打算发布到 `https://<USERNAME or GROUP>.gitlab.io/<REPO>/`（也就是说�
    的仓库在 `https://gitlab.com/<USERNAME>/<REPO>`），则将 `base` 设置为
    `"/<REPO>/"`。
 
