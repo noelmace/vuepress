@@ -7,7 +7,7 @@ the recommended document structure is as follows:
 
 ::: vue . ├── docs │   ├── .vuepress _(**Optional**)_ │   │   ├── `components`
 _(**Optional**)_ │   │   ├── `theme` _(**Optional**)_ │   │   │ └── Layout.vue
-│   │   ├── `public` _(**Optional**)_ │   │   ├── `styles` _(**Optional**)_ │  
+│   │   ├── `public` _(**Optional**)_ │   │   ├── `styles` _(**Optional**)_ │ �
 │   │   ├── index.styl │   │   │   └── palette.styl │   │   ├── `templates`
 _(**Optional, Danger Zone**)_ │   │   │   ├── dev.html │   │   │   └── ssr.html
 │   │   ├── `config.js` _(**Optional**)_ │   │   └── `enhanceApp.js`
